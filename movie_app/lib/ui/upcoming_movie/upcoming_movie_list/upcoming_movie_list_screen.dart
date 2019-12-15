@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/ui/common/custom_search_bar.dart';
 import 'package:movie_app/ui/upcoming_movie/upcoming_movie_list/upcoming_movie_list_screen_state.dart';
 import 'package:movie_app/ui/upcoming_movie/upcoming_movie_list/upcoming_video_item.dart';
 import 'package:provider/provider.dart';
 
 class UpcomingMovieListScreen extends StatefulWidget {
-  const UpcomingMovieListScreen({Key key, this.title}) : super(key: key);
-  final String title;
+  const UpcomingMovieListScreen({Key key}) : super(key: key);
 
   @override
   _UpcomingMovieListState createState() => _UpcomingMovieListState();
@@ -23,41 +23,32 @@ class _UpcomingMovieListState extends State<UpcomingMovieListScreen> {
   void _onScroll() {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
-    if (maxScroll - currentScroll <= _scrollThreshold) {
+
+    bool searchMode = Provider.of<MovieListState>(context, listen: false).searchMode;
+    if (maxScroll - currentScroll <= _scrollThreshold && !searchMode) {
       Provider.of<MovieListState>(context, listen: false)
-          .fetchUpcomingMovie();
+      .fetchUpcomingMovie();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<MovieListState>(context, listen: false).fetchUpcomingMovie();
+    bool searchMode = Provider.of<MovieListState>(context, listen: false).searchMode;
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: TextField(
-          textInputAction: TextInputAction.search,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16.0,
-          ),
-          onChanged: (value) {
-            if (value.length >= 3) {
-              print(value);
-              Provider.of<MovieListState>(context, listen: false)
-              .searchMovie(term: value);  
-            }
+        title: CustomSearchBar(
+          title: 'Upcoming Movies',
+          onTap: (value) =>
+            Provider.of<MovieListState>(context, listen: false).searchMovie(term: value)
+          ,
+          onClose: () {
+            Provider.of<MovieListState>(context, listen: false).resetMovieList();            
+            Provider.of<MovieListState>(context, listen: false).fetchUpcomingMovie();
           },
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              print('onPressed');
-            },
-          ),
-        ],
+        )
       ),
       body: Container(
         width: double.infinity,
@@ -70,12 +61,12 @@ class _UpcomingMovieListState extends State<UpcomingMovieListScreen> {
           }
 
           return ListView.builder(
-            key: const Key('list'),
-            itemCount: upcomingMovie.movies.length + 1,
+            key: const Key('video_list'),
+            itemCount: !searchMode ? upcomingMovie.movies.length + 1 : upcomingMovie.movies.length,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
-              return index == upcomingMovie.movies.length
+              return index == upcomingMovie.movies.length && !searchMode
                   ? Center(child: const CircularProgressIndicator())
                   : UpcomingVideoItem(movieDetail: upcomingMovie
                   .movies[index]);

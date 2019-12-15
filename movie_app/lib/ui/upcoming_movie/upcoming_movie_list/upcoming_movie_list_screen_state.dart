@@ -20,34 +20,39 @@ class MovieListState extends ChangeNotifier implements IMovieListState {
   List<Movie> get movies => _movies;
   int get moviesQtd => _movies.length;
 
+  bool get searchMode => _searchMode;
+  bool _searchMode = false;
+
   @override
   void fetchUpcomingMovie() async {
     _page = _page + 1;
-
-    movieService.fetchUpcomingMovie(page: _page)
-        .then((upcomingMovieList) {
+    movieService.fetchUpcomingMovie(page: _page).then((upcomingMovieList) {
       _movies = [..._movies, ...upcomingMovieList];
       _errorMessage = '';
+      _searchMode = false;
       notifyListeners();
     }).catchError((onError) {
-      _errorMessage = 'Error to get Upcoming Movies';
-      print('onError:: onError');
+      _errorMessage = 'Error to fetch Upcoming Movies';
       notifyListeners();
     });
   }
 
   @override
   void searchMovie({@required String term}) {
-    movieService.searchMovie(term: term)
-        .then((movieList) {
-      _movies = movieList;
+    movieService.searchMovie(term: term).then((movieList) {
+      _movies = _movies = movieList;
       _errorMessage = '';
-      print('searchMovie::success:: $movieList');
+      _searchMode = true;
       notifyListeners();
     }).catchError((onError) {
       _errorMessage = 'Error to search Movies';
-      print('searchMovie::onError');
       notifyListeners();
     });
+  }
+
+  void resetMovieList() {
+    _movies = [];
+    _page = 0;
+    notifyListeners();
   }
 }
