@@ -18,11 +18,11 @@ class Movie {
     }
     
     return Movie(
-      name: json['title'],
+      name: json['title']?? '',
       posterImageUrl: 'https://image.tmdb.org/t/p/w500${json['poster_path']}',
       genresId: genreIds,
-      releaseDate: json['release_date'],
-      overview: json['overview'],
+      releaseDate: json['release_date']?? '',
+      overview: json['overview']?? '',
     );
   }
 

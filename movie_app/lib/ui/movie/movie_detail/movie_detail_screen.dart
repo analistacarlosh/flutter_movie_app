@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/ui/common/custom_cached_network_image.dart';
 
-class UpcomingMovieDetailScreen extends StatelessWidget {
-  const UpcomingMovieDetailScreen({this.movieDetail});
+class MovieDetailScreen extends StatelessWidget {
+  const MovieDetailScreen({this.movieDetail});
   final Movie movieDetail;
 
   final EdgeInsets defaultMargin = const EdgeInsets.all(10);

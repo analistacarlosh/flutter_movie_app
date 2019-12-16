@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/ui/common/custom_cached_network_image.dart';
-import 'package:movie_app/ui/upcoming_movie/upcoming_movie_detail/upcoming_movie_detail_screen.dart';
+import 'package:movie_app/ui/movie/movie_detail/movie_detail_screen.dart';
 
-class UpcomingVideoItem extends StatelessWidget {
+class MovieListItem extends StatelessWidget {
 
-  const UpcomingVideoItem({this.movieDetail});
+  const MovieListItem({this.movieDetail});
   final Movie movieDetail;
 
   @override
@@ -16,7 +16,7 @@ class UpcomingVideoItem extends StatelessWidget {
         onTap: () {
           Navigator.push(context,
             MaterialPageRoute(builder: (context) =>
-                UpcomingMovieDetailScreen(movieDetail: movieDetail)
+                MovieDetailScreen(movieDetail: movieDetail)
             ),
           );
         },

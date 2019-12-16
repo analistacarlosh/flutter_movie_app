@@ -6,7 +6,7 @@ import 'package:movie_app/repository/movie_repository.dart';
 
 abstract class IMovieService {
   Future<List<Movie>> fetchUpcomingMovie({int page});
-  Future<List<Movie>> searchMovie({String term});
+  Future<List<Movie>> searchMovie({String term, int page});
   List<Movie> setGenreOnMovie({List<Movie> movies, List<Genre> genres});
 }
 
@@ -27,8 +27,8 @@ class MovieService implements IMovieService {
   }
 
   @override
-  Future<List<Movie>> searchMovie({String term}) async {
-    List<Movie> movies = await movieRepository.searchMovie(term: term);
+  Future<List<Movie>> searchMovie({String term, int page}) async {
+    List<Movie> movies = await movieRepository.searchMovie(term: term, page: page);
     List<Genre> genres = await genreRepository.fetchGenre();
     List<Movie> moviesUpdated = await setGenreOnMovie(
       movies: movies, genres: genres

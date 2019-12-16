@@ -5,7 +5,7 @@ import 'package:movie_app/repository/base_repository.dart';
 
 abstract class IMovieRepository {
   Future<List<Movie>> fetchUpcomingMovie({int page = 1});
-  Future<List<Movie>> searchMovie({@required String term});
+  Future<List<Movie>> searchMovie({@required String term, int page = 1});
   List<Movie> movieListFromJson(List<dynamic> json);
 }
 
@@ -27,9 +27,10 @@ class MovieRepository extends BaseRepository implements IMovieRepository {
   }
 
   @override
-  Future<List<Movie>> searchMovie({String term}) async {
+  Future<List<Movie>> searchMovie({String term, int page = 1}) async {
     try {
-      var response = await dio.get(getUrl('SEARCH_MOVIES') + '&query=$term'); 
+      var response = await dio.get(getUrl('SEARCH_MOVIES')
+      + '&query=$term&page=$page'); 
       List<Movie> movieList = await movieListFromJson(response.data['results']);
       return Future.value(movieList);
     } catch (Error) {

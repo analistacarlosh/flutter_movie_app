@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/ui/upcoming_movie/upcoming_movie_list/upcoming_movie_list_screen.dart';
+import 'package:movie_app/ui/movie/movie_list/movie_list_screen.dart';
 import 'package:movie_app/dependency_injection.dart' as di;
-import 'package:movie_app/ui/upcoming_movie/upcoming_movie_list/upcoming_movie_list_screen_state.dart';
+import 'package:movie_app/ui/movie/movie_list/movie_list_state.dart';
 import 'package:provider/provider.dart';
 
 import 'dependency_injection.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             'Hind'),
           ),
         ),
-        home: const UpcomingMovieListScreen(),
+        home: const MovieListScreen(),
       ),
     );
   }
