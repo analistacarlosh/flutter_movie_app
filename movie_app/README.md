@@ -1,4 +1,6 @@
 # movie_app
+
+## [Screen recorder of the App](https://www.dropbox.com/s/mwoehl1olzm3g9k/kobe_test_app.webm?dl=0)
  
 ## Functional Requirements
 
