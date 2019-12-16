@@ -21,7 +21,7 @@ class GenreRepository extends BaseRepository implements IGenreRepository {
       options: buildCacheOptions(Duration(hours: 1),
       maxStale: Duration(hours: 1))
       );
-      List<Genre> genreList = await genreListFromJson(response.data['genres']);
+      List<Genre> genreList = genreListFromJson(response.data['genres']);
       return Future.value(genreList);
     } catch (Error) {
       return Future.error(Exception('Failed to fetch Genre list:: $Error'));

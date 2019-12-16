@@ -19,7 +19,7 @@ class MovieRepository extends BaseRepository implements IMovieRepository {
     try {
       var response = await dio.get(getUrl('FETCH_UPCOMING_MOVIES') 
       + '&page=$page'); 
-      List<Movie> movieList = await movieListFromJson(response.data['results']);
+      List<Movie> movieList = movieListFromJson(response.data['results']);
       return Future.value(movieList);
     } catch (Error) {
       return Future.error(Exception('Failed to fetchUpcomingMovie:: $Error'));
@@ -31,7 +31,7 @@ class MovieRepository extends BaseRepository implements IMovieRepository {
     try {
       var response = await dio.get(getUrl('SEARCH_MOVIES')
       + '&query=$term&page=$page'); 
-      List<Movie> movieList = await movieListFromJson(response.data['results']);
+      List<Movie> movieList = movieListFromJson(response.data['results']);
       return Future.value(movieList);
     } catch (Error) {
       return Future.error(Exception('Failed to searchMovie:: $Error'));

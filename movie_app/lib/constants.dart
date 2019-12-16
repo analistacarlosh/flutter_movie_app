@@ -7,6 +7,4 @@ const appEnv = const {
   'SEARCH_MOVIES': 'search/movie',
   'FETCH_UPCOMING_MOVIES': 'movie/upcoming',
   'FETCH_GENERS': 'genre/movie/list',
-
-  'MESSAGE_ERROR_GENERIC': 'Ocorreu uma falha, tente novamente.',
 };

@@ -1,6 +1,5 @@
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movie_app/constants.dart';
 import 'package:movie_app/repository/genre_repository.dart';
 import 'package:movie_app/repository/movie_repository.dart';
 import 'package:movie_app/service/movie_service.dart';
