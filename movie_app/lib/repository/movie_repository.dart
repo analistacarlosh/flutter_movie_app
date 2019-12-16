@@ -34,18 +34,18 @@ class MovieRepository extends BaseRepository implements IMovieRepository {
       List<Movie> movieList = movieListFromJson(response.data['results']);
       return Future.value(movieList);
     } catch (Error) {
-      return Future.error(Exception('Failed to searchMovie:: $Error'));
+      return Future.error(Exception('Failed to searchMovie :: $Error'));
     }
   }
 
   @override
   List<Movie> movieListFromJson(List<dynamic> json) {
+    List<Movie> movieList = [];
     try {
-      List<Movie> movieList = [];
       json.forEach((item) => movieList.add(Movie.fromJson(item)));
-      return movieList;
     } catch (Error) {
-      Exception('movieListFromJson :: $Error');
+      Exception('Failed to convert from Json :: $Error');
     }
+    return movieList;
   }
 }

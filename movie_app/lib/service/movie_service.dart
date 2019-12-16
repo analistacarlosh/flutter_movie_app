@@ -28,7 +28,9 @@ class MovieService implements IMovieService {
 
   @override
   Future<List<Movie>> searchMovie({String term, int page}) async {
-    List<Movie> movies = await movieRepository.searchMovie(term: term, page: page);
+    List<Movie> movies = await movieRepository.searchMovie(
+      term: term, page: page
+    );
     List<Genre> genres = await genreRepository.fetchGenre();
     List<Movie> moviesUpdated = setGenreOnMovie(
       movies: movies, genres: genres

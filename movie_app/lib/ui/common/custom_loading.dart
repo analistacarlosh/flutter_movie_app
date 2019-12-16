@@ -7,13 +7,13 @@ class CustomLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Platform.isIOS) {
       return Center(
-          key: ValueKey('ios_loadingIndicator'),
+          key: const ValueKey('ios_loadingIndicator'),
           child: CupertinoActivityIndicator()
       );
     }
     return Center(
-        key: ValueKey('android_loadingIndicator'),
-        child: CircularProgressIndicator()
+        key: const ValueKey('android_loadingIndicator'),
+        child: const CircularProgressIndicator()
     );
   }
 }

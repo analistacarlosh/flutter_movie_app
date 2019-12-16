@@ -5,6 +5,7 @@ import 'package:movie_app/service/movie_service.dart';
 abstract class IMovieListState {
   void fetchUpcomingMovie();
   void searchMovie({String term});
+  void resetMovieList();
 }
 
 class MovieListState extends ChangeNotifier implements IMovieListState {
@@ -56,6 +57,7 @@ class MovieListState extends ChangeNotifier implements IMovieListState {
     });
   }
 
+  @override
   void resetMovieList() {
     _movies = [];
     _page = 0;

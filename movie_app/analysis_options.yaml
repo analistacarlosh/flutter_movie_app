@@ -1,0 +1,42 @@
+linter:
+  rules:
+    - always_declare_return_types
+    - camel_case_types
+    - empty_constructor_bodies
+    - annotate_overrides
+    - avoid_init_to_null
+    - slash_for_doc_comments
+    - sort_constructors_first
+    - unnecessary_brace_in_string_interps
+    - library_names
+    - file_names
+    - library_prefixes
+    - non_constant_identifier_names
+    - directives_ordering
+    - lines_longer_than_80_chars
+    - curly_braces_in_flow_control_structures
+    - unnecessary_new
+    - unnecessary_null_aware_assignments
+    - unnecessary_null_in_if_null_operators
+    - unnecessary_overrides
+    - unnecessary_parenthesis
+    - unnecessary_statements
+    - unnecessary_this
+    - unrelated_type_equality_checks
+    - sort_pub_dependencies
+    - recursive_getters
+    - prefer_single_quotes
+    - prefer_collection_literals
+    - prefer_conditional_assignment
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - package_prefixed_library_names
+    - package_names
+    - avoid_relative_lib_imports
+
+analyzer:
+  exclude:
+    - lib/**chopper.dart
+    - lib/**g.dart

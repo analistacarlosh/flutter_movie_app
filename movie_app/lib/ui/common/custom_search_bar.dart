@@ -58,7 +58,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
     if (!searchMode) {
       return Container(
         child: Text(widget.title,
-            key: Key('custom_search_bar_title'),
+            key: const Key('custom_search_bar_title'),
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.0,
@@ -67,12 +67,12 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
     }
 
     return TextField(
-      key: Key('custom_search_bar_text'),
+      key: const Key('custom_search_bar_text'),
       textInputAction: TextInputAction.done,
       style: TextStyle(
           color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w300),
       decoration: InputDecoration(
-        hintText: "Type to search for movies",
+        hintText: 'Type to search for movies',
         hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.white),
       ),
       onChanged: (value) {
