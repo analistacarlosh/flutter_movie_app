@@ -41,7 +41,7 @@ class MovieDetailScreen extends StatelessWidget {
               margin: defaultMargin,
               padding: defaultPadding,
               child: Text(movieDetail.name,
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
             ),
             Container(
@@ -49,7 +49,7 @@ class MovieDetailScreen extends StatelessWidget {
               padding: defaultPadding,
               child:  Text(
                 movieDetail.releaseDate,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
             ),
             Container(
@@ -57,14 +57,14 @@ class MovieDetailScreen extends StatelessWidget {
               padding: defaultPadding,
               child: Text(movieDetail.genres.map((genre) => genre.name)
                     .toList().join(', '),
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
             ),
             Container(
               margin: defaultMargin,
               padding: defaultPadding,
               child: Text(movieDetail.overview,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
             const SizedBox(

@@ -30,7 +30,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
       placeholder: (context, url) => Container(
         width: width,
         height: height,
-        child: Center(
+        child: const Center(
           child: const CircularProgressIndicator(),
         ),
       ),

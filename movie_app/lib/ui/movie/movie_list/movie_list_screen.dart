@@ -74,7 +74,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               return index == upcomingMovie.movies.length
-                  ? Center(child: const CircularProgressIndicator())
+                  ? const Center(child: const CircularProgressIndicator())
                   : MovieListItem(movieDetail: upcomingMovie.movies[index]);
             },
             controller: _scrollController,

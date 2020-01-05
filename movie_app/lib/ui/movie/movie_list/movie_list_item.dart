@@ -43,7 +43,7 @@ class MovieListItem extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       child: Text(movieDetail.name,
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         textAlign: TextAlign.left,
                       ),
                       width: double.maxFinite,

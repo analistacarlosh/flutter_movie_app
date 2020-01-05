@@ -5,7 +5,6 @@ import 'package:movie_app/repository/base_repository.dart';
 
 abstract class IGenreRepository {
   Future<List<Genre>> fetchGenre();
-  List<Genre> genreListFromJson(List<dynamic> json);
 }
 
 class GenreRepository extends BaseRepository implements IGenreRepository {
@@ -16,22 +15,20 @@ class GenreRepository extends BaseRepository implements IGenreRepository {
   @override
   Future<List<Genre>> fetchGenre() async {
     try {
+
       var response = await dio.get(
       getUrl('FETCH_GENERS'),
-      options: buildCacheOptions(Duration(hours: 1),
-      maxStale: Duration(hours: 1))
+      options: buildCacheOptions(const Duration(hours: 1),
+      maxStale: const Duration(hours: 1))
       );
-      List<Genre> genreList = genreListFromJson(response.data['genres']);
+
+      final Iterable json = response.data['genres'];
+      List<Genre> genreList = json.map((genre) => Genre.fromJson(genre))
+          .toList();
       return Future.value(genreList);
+
     } catch (Error) {
       return Future.error(Exception('Failed to fetch Genre list:: $Error'));
     }
-  }
-
-  @override
-  List<Genre> genreListFromJson(List<dynamic> json) {
-    List<Genre> genreList = [];
-    json.forEach((item) => genreList.add(Genre.fromJson(item)));
-    return genreList;
   }
 }
