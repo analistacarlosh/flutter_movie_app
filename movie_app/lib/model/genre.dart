@@ -1,4 +1,8 @@
 
+import 'package:json_annotation/json_annotation.dart';
+part 'genre.g.dart';
+
+@JsonSerializable(nullable: false)
 class Genre {
 
   Genre({
@@ -6,18 +10,13 @@ class Genre {
     this.name,
   });
 
-  factory Genre.fromJson(Map<String, dynamic> json) {
-    return Genre(
-      id: json['id'],
-      name: json['name'],
-    );
-  }
+  factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
 
-  int id;
-  String name;
+  final int id;
+  final String name;
 
   @override
-  String toString() {
-    return 'id: $id, name: $name';
-  }
+  String toString() => 'id: $id, name: $name';
+
+  Map<String, dynamic> toJson() => _$GenreToJson(this);
 }

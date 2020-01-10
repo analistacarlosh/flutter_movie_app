@@ -33,7 +33,7 @@ class MovieListItem extends StatelessWidget {
                 fit: FlexFit.tight,
                 child: CustomCacheNetworkImage(
                   fit: BoxFit.fill,
-                  imageUrl: movieDetail.posterImageUrl,
+                  imageUrl: 'https://image.tmdb.org/t/p/w500${movieDetail.posterImageUrl}',
                 ),
               ),
               Flexible(

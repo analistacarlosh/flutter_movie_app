@@ -36,6 +36,7 @@ class MovieListState extends ChangeNotifier implements IMovieListState {
       _searchMode = false;
       notifyListeners();
     }).catchError((onError) {
+      print('fetchUpcomingMovie ${onError}');
       _errorMessage = 'Error to fetch Upcoming movies';
       notifyListeners();
     });

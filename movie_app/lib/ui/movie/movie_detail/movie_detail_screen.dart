@@ -32,7 +32,7 @@ class MovieDetailScreen extends StatelessWidget {
                   child: CustomCacheNetworkImage(
                     key: const Key('upcomingMovieImage'),
                     fit: BoxFit.fill,
-                    imageUrl: movieDetail.posterImageUrl,
+                    imageUrl: 'https://image.tmdb.org/t/p/w500${movieDetail.posterImageUrl}',
                   ),
                 ),
               ),

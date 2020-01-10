@@ -1,6 +1,9 @@
 
-import 'genre.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:movie_app/model/genre.dart';
+part 'movie.g.dart';
 
+@JsonSerializable(nullable: false)
 class Movie {
 
   Movie({
@@ -8,34 +11,30 @@ class Movie {
     this.posterImageUrl,
     this.genresId,
     this.releaseDate,
-    this.overview
+    this.overview,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
-    List<int> genreIds = [];
-    for (var position = 0; position < json['genre_ids'].length; position++) {
-      genreIds.add(json['genre_ids'][position]);
-    }
-    
-    return Movie(
-      name: json['title']?? '',
-      posterImageUrl: 'https://image.tmdb.org/t/p/w500${json['poster_path']}',
-      genresId: genreIds,
-      releaseDate: json['release_date']?? '',
-      overview: json['overview']?? '',
-    );
-  }
+  factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 
-  String name;
-  String posterImageUrl;
-  List<int> genresId;
+  @JsonKey(name: 'title', includeIfNull: false)
+  final String name;
+  @JsonKey(name: 'poster_path')
+  final String posterImageUrl;
+  @JsonKey(name: 'genre_ids')
+  final List<int> genresId;
+  @JsonKey(name: 'release_date')
+  final String releaseDate;
+  @JsonKey(name: 'overview')
+  final String overview;
+  @JsonKey(ignore: true)
   List<Genre> genres;
-  String releaseDate;
-  String overview;
 
   @override
   String toString() {
     return 'name: $name, posterImageUrl: $posterImageUrl, genders: ${genresId
         .toString()}, release: $releaseDate, overview: $overview';
   }
+
+  Map<String, dynamic> toJson() => _$MovieToJson(this);
+
 }

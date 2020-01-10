@@ -16,7 +16,6 @@ class MovieRepository extends BaseRepository implements IMovieRepository {
   @override
   Future<List<Movie>> fetchUpcomingMovie({int page = 1}) async {
     try {
-
       var response = await dio.get(getUrl('FETCH_UPCOMING_MOVIES')
       + '&page=$page'); 
 
@@ -24,7 +23,6 @@ class MovieRepository extends BaseRepository implements IMovieRepository {
       List<Movie> movieList = json.map((movie) => Movie.fromJson(movie))
           .toList();
       return Future.value(movieList);
-
     } catch (Error) {
       return Future.error(Exception('Failed to fetchUpcomingMovie:: $Error'));
     }
